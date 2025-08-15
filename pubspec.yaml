@@ -1,0 +1,135 @@
+name: kunci_hidup
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.1.0
+  cached_network_image: ^3.4.1
+  get: ^4.7.2
+  image_cropper: ^9.1.0
+  image_picker: ^1.1.2
+  shared_preferences: ^2.5.3
+  http: ^1.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+    - assets/icons/
+    - assets/language/
+
+  fonts:
+    - family: CormorantGaramond
+      fonts:
+        - asset: assets/fonts/CormorantGaramond-Bold.ttf
+        - asset: assets/fonts/CormorantGaramond-BoldItalic.ttf
+        - asset: assets/fonts/CormorantGaramond-Italic.ttf
+        - asset: assets/fonts/CormorantGaramond-Light.ttf
+        - asset: assets/fonts/CormorantGaramond-LightItalic.ttf
+        - asset: assets/fonts/CormorantGaramond-Medium.ttf
+        - asset: assets/fonts/CormorantGaramond-MediumItalic.ttf
+        - asset: assets/fonts/CormorantGaramond-Regular.ttf
+        - asset: assets/fonts/CormorantGaramond-SemiBold.ttf
+        - asset: assets/fonts/CormorantGaramond-SemiBoldItalic.ttf
+
+    - family: DMSans
+      fonts:
+        - asset: assets/fonts/DMSans-Black.ttf
+        - asset: assets/fonts/DMSans-BlackItalic.ttf
+        - asset: assets/fonts/DMSans-Bold.ttf
+        - asset: assets/fonts/DMSans-BoldItalic.ttf
+        - asset: assets/fonts/DMSans-ExtraBold.ttf
+        - asset: assets/fonts/DMSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/DMSans-ExtraLight.ttf
+        - asset: assets/fonts/DMSans-ExtraLightItalic.ttf
+        - asset: assets/fonts/DMSans-Italic.ttf
+        - asset: assets/fonts/DMSans-Light.ttf
+        - asset: assets/fonts/DMSans-LightItalic.ttf
+        - asset: assets/fonts/DMSans-Medium.ttf
+        - asset: assets/fonts/DMSans-MediumItalic.ttf
+        - asset: assets/fonts/DMSans-Regular.ttf
+        - asset: assets/fonts/DMSans-SemiBold.ttf
+        - asset: assets/fonts/DMSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/DMSans-Thin.ttf
+        - asset: assets/fonts/DMSans-ThinItalic.ttf
+
+    - family: DMSans_18pt
+      fonts:
+        - asset: assets/fonts/DMSans_18pt-Black.ttf
+        - asset: assets/fonts/DMSans_18pt-BlackItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-Bold.ttf
+        - asset: assets/fonts/DMSans_18pt-BoldItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-ExtraBold.ttf
+        - asset: assets/fonts/DMSans_18pt-ExtraBoldItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-ExtraLight.ttf
+        - asset: assets/fonts/DMSans_18pt-ExtraLightItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-Italic.ttf
+        - asset: assets/fonts/DMSans_18pt-Light.ttf
+        - asset: assets/fonts/DMSans_18pt-LightItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-Medium.ttf
+        - asset: assets/fonts/DMSans_18pt-MediumItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-Regular.ttf
+        - asset: assets/fonts/DMSans_18pt-SemiBold.ttf
+        - asset: assets/fonts/DMSans_18pt-SemiBoldItalic.ttf
+        - asset: assets/fonts/DMSans_18pt-Thin.ttf
+        - asset: assets/fonts/DMSans_18pt-ThinItalic.ttf
+
+    - family: DMSans_24pt
+      fonts:
+        - asset: assets/fonts/DMSans_24pt-Black.ttf
+        - asset: assets/fonts/DMSans_24pt-BlackItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-Bold.ttf
+        - asset: assets/fonts/DMSans_24pt-BoldItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-ExtraBold.ttf
+        - asset: assets/fonts/DMSans_24pt-ExtraBoldItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-ExtraLight.ttf
+        - asset: assets/fonts/DMSans_24pt-ExtraLightItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-Italic.ttf
+        - asset: assets/fonts/DMSans_24pt-Light.ttf
+        - asset: assets/fonts/DMSans_24pt-LightItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-Medium.ttf
+        - asset: assets/fonts/DMSans_24pt-MediumItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-Regular.ttf
+        - asset: assets/fonts/DMSans_24pt-SemiBold.ttf
+        - asset: assets/fonts/DMSans_24pt-SemiBoldItalic.ttf
+        - asset: assets/fonts/DMSans_24pt-Thin.ttf
+        - asset: assets/fonts/DMSans_24pt-ThinItalic.ttf
+
+    - family: DMSans_36pt
+      fonts:
+        - asset: assets/fonts/DMSans_36pt-Black.ttf
+        - asset: assets/fonts/DMSans_36pt-BlackItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-Bold.ttf
+        - asset: assets/fonts/DMSans_36pt-BoldItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-ExtraBold.ttf
+        - asset: assets/fonts/DMSans_36pt-ExtraBoldItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-ExtraLight.ttf
+        - asset: assets/fonts/DMSans_36pt-ExtraLightItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-Italic.ttf
+        - asset: assets/fonts/DMSans_36pt-Light.ttf
+        - asset: assets/fonts/DMSans_36pt-LightItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-Medium.ttf
+        - asset: assets/fonts/DMSans_36pt-MediumItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-Regular.ttf
+        - asset: assets/fonts/DMSans_36pt-SemiBold.ttf
+        - asset: assets/fonts/DMSans_36pt-SemiBoldItalic.ttf
+        - asset: assets/fonts/DMSans_36pt-Thin.ttf
+        - asset: assets/fonts/DMSans_36pt-ThinItalic.ttf
