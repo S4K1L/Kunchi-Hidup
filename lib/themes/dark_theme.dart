@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
 
-ThemeData dark() => ThemeData(
-  fontFamily: "Sen",
-);
+ThemeData dark() =>
+    ThemeData(fontFamily: "Sen", scaffoldBackgroundColor: Colors.black);

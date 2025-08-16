@@ -9,7 +9,7 @@ class DesignSystem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       hasGlow: true,
-      appBar: CustomAppBar(title: "Hello World", subtitle: "", leadingIcon: "assets/icons/edit.svg",),
+      appBar: CustomAppBar(title: "Hello World", leadingIcon: "assets/icons/edit.svg",),
       isScrollable: true,
       children: [
       FlutterLogo(size: 400,), const SizedBox(height:  800),

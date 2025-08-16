@@ -83,6 +83,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       crossAxisAlignment: leadingIcon == null
                           ? CrossAxisAlignment.center
                           : CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           title ?? "",
@@ -94,17 +95,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             color: AppColors.primaryColor,
                           ),
                         ),
-                        const SizedBox(height: 4),
-                        Text(
-                          subtitle ?? "",
-                          style: TextStyle(
-                            fontFamily: "DM Sans",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            height: 1,
-                            color: Colors.white,
+                        if (subtitle != null) const SizedBox(height: 4),
+                        if (subtitle != null)
+                          Text(
+                            subtitle!,
+                            style: TextStyle(
+                              fontFamily: "DM Sans",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              height: 1,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),
