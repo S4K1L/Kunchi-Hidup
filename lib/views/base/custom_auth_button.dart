@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/custom_svg.dart';
@@ -18,18 +19,18 @@ class CustomAuthButton extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             color: AppColors.buttonColor
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
+          padding: EdgeInsets.symmetric(vertical: 15.sp),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               logo.isNotEmpty ?
-              CustomSvg(asset: logo,height: 24,width: 24,) : SizedBox(),
-              SizedBox(width: 8,),
-              Text(title,style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w600, fontFamily: "DMSans"),)
+              CustomSvg(asset: logo,height: 24.h,width: 24.w,) : SizedBox(),
+              SizedBox(width: 8.w),
+              Text(title,style: TextStyle(color: Colors.white,fontSize: 16.sp,fontWeight: FontWeight.w600, fontFamily: "DMSans"),)
             ],
           ),
         ),

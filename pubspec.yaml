@@ -21,6 +21,7 @@ dependencies:
   http: ^1.5.0
   just_audio: ^0.9.36
   audio_video_progress_bar: ^1.0.1
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +38,8 @@ flutter:
     - assets/images/
     - assets/fonts/
     - assets/icons/
+    - assets/icons/homeCategoryIcon/
+    - assets/icons/homeOverwhelmed/
     - assets/language/
 
   fonts:

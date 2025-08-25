@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kunci_hidup/utils/app_colors.dart';
 import 'package:kunci_hidup/utils/custom_svg.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
+import '../../base/category_button.dart';
+import '../../base/list_card_widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -34,11 +37,11 @@ class HomePage extends StatelessWidget {
       isScrollable: true,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Row(
                 children: [
                   Builder(
@@ -50,11 +53,11 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  Image.asset("assets/images/logo.png", height: 43, width: 91),
+                  Image.asset("assets/images/logo.png", height: 43.h, width: 91.w),
                   const Spacer(),
                 ],
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20.h),
               Text(
                 "Kunci Soundscapes",
                 style: TextStyle(
@@ -68,10 +71,10 @@ class HomePage extends StatelessWidget {
 
               /// Horizontal scrollable category buttons
               SizedBox(
-                height: 100,
+                height: MediaQuery.of(context).size.height / 10,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.only(left: 16),
+                  padding: EdgeInsets.only(left: 16.h),
                   itemCount: assets.length,
                   itemBuilder: (context, index) {
                     return CategoryButton(
@@ -81,6 +84,39 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
+              SizedBox(height: 35.h),
+              ListCardWidget(assets: 'spiral', title: "Spiral Journey", subTitle: 'Start Your  Spiral Journey', onPressed: () {  },),
+              ListCardWidget(assets: 'portal', title: "Portal Rasa", subTitle: 'Your Emotional Companion', onPressed: () {  },),
+              ListCardWidget(assets: 'ask', title: "Ask Within", subTitle: 'Portal to your patterns', onPressed: () {  },),
+              ListCardWidget(assets: 'ruang', title: "Ruang Menulis", subTitle: 'Writing Space', onPressed: () {  },),
+              ListCardWidget(assets: 'mirror', title: "Monthly Mirror", subTitle: 'Journey Result', onPressed: () {  },),
+              SizedBox(height: 20.h),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: 128.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(32.r),
+                    color: AppColors.white.withOpacity(.08),
+                    border: Border.all(color: AppColors.primaryColor.withOpacity(.19))
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Overwhelmed",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,fontFamily: 'DMSans',color: AppColors.primaryColor),),
+                        SizedBox(width: 4.w),
+                        CircleAvatar(
+                            radius: 10,
+                            backgroundColor: AppColors.black,
+                            child: CustomSvg(asset: "assets/icons/categorySelected.svg",width: 10,))
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -89,50 +125,3 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class CategoryButton extends StatelessWidget {
-  final String assets;
-  final String title;
-  const CategoryButton({
-    super.key,
-    required this.assets,
-    required this.title,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.only(right: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32),
-                color: Colors.white.withOpacity(.10),
-                border: Border.all(
-                  color: AppColors.primaryColor.withOpacity(.17),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-                child: CustomSvg(asset: "assets/icons/$assets.svg"),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              title,
-              style: TextStyle(
-                color: AppColors.primaryColor,
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                fontFamily: "DMSans",
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

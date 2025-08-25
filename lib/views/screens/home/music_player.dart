@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:kunci_hidup/utils/custom_svg.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
+import '../../../controllers/music_player_controller.dart';
 import '../../../utils/app_colors.dart';
 import '../../base/custom_wave.dart';
 import '../subscriptions/subscriptions.dart';
 
-class PlayAudio extends StatefulWidget {
-  const PlayAudio({super.key});
+class MusicPlayer extends StatefulWidget {
+  const MusicPlayer({super.key});
 
   @override
-  State<PlayAudio> createState() => _PlayAudioState();
+  State<MusicPlayer> createState() => _MusicPlayerState();
 }
 
-class _PlayAudioState extends State<PlayAudio> {
+class _MusicPlayerState extends State<MusicPlayer> {
+  final MusicPlayerController controller = Get.put(MusicPlayerController());
+
   final AudioPlayer _audioPlayer = AudioPlayer();
   late Stream<Duration> _positionStream;
   late Stream<Duration?> _durationStream;
@@ -107,71 +111,45 @@ class _PlayAudioState extends State<PlayAudio> {
               ),
 
               const SizedBox(height: 24),
-              Text(
-                "Grief Ritual - Breathe Into Loss",
+              Obx(() => Text(
+                controller.audioTitle.value,
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'CormorantGaramond',
                   color: AppColors.primaryColor,
                 ),
                 textAlign: TextAlign.center,
-              ),
+              )),
+
               const SizedBox(height: 10),
-              const Text(
-                "Voice By Daissy",
+              Obx(() => Text(
+                controller.audioArtist.value,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'DMSans',
                   color: Colors.white,
                 ),
-                textAlign: TextAlign.center,
-              ),
+              )),
 
               const SizedBox(height: 50),
 
               // Progress bar with current time and total duration
-              StreamBuilder<Duration>(
-                stream: _audioPlayer.positionStream,
-                builder: (context, snapshot) {
-                  final position = snapshot.data ?? Duration.zero;
-                  final duration = _audioPlayer.duration ?? const Duration(seconds: 1);
+              Obx(() {
+                final pos = controller.position.value;
+                final dur = controller.duration.value ?? Duration(seconds: 1);
+                return Row(
+                  children: [
+                    Text(controller.formatDuration(pos), style: TextStyle(color: Colors.white, fontSize: 12)),
+                    SizedBox(width: 8),
+                    Expanded(child: CustomWaveformBar(current: pos, total: dur)),
+                    SizedBox(width: 8),
+                    Text(controller.formatDuration(dur), style: TextStyle(color: Colors.white, fontSize: 12)),
+                  ],
+                );
+              }),
 
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        // Start Time
-                        Text(
-                          _formatDuration(position),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-
-                        // Waveform Progress Bar
-                        Expanded(
-                          child: CustomWaveformBar(current: position, total: duration),
-                        ),
-
-                        const SizedBox(width: 8),
-
-                        // End Time
-                        Text(
-                          _formatDuration(duration),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
 
 
 
@@ -182,9 +160,9 @@ class _PlayAudioState extends State<PlayAudio> {
                 padding: const EdgeInsets.symmetric(horizontal: 47),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(22),
-                    color: Colors.white.withOpacity(.10),
-                    border: Border.all(color: AppColors.primaryColor.withOpacity(.40))
+                      borderRadius: BorderRadius.circular(22),
+                      color: Colors.white.withOpacity(.10),
+                      border: Border.all(color: AppColors.primaryColor.withOpacity(.40))
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -195,38 +173,27 @@ class _PlayAudioState extends State<PlayAudio> {
                         onPressed: _skipBackward,
                       ),
                       const SizedBox(width: 24),
-                      StreamBuilder<PlayerState>(
-                        stream: _audioPlayer.playerStateStream,
-                        builder: (context, snapshot) {
-                          final isPlaying = snapshot.data?.playing ?? false;
-                          final processingState = snapshot.data?.processingState;
+                      Obx(() {
+                        if (controller.isLoading.value) {
+                          return CircularProgressIndicator();
+                        }
 
-                          if (processingState == ProcessingState.loading ||
-                              processingState == ProcessingState.buffering) {
-                            return const CircularProgressIndicator();
-                          } else if (isPlaying) {
-                            return IconButton(
-                              icon: CircleAvatar(
-                                  backgroundColor: AppColors.primaryColor.withOpacity(.21),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Icon(Icons.pause, color: AppColors.primaryColor,size: 30,),
-                                  )),
-                              onPressed: _audioPlayer.pause,
-                            );
-                          } else {
-                            return IconButton(
-                              icon: CircleAvatar(
-                                  backgroundColor: AppColors.primaryColor.withOpacity(.21),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Icon(Icons.play_arrow, color: AppColors.primaryColor,size: 30,),
-                                  )),
-                              onPressed: _audioPlayer.play,
-                            );
-                          }
-                        },
-                      ),
+                        return IconButton(
+                          icon: CircleAvatar(
+                            backgroundColor: AppColors.primaryColor.withOpacity(.21),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Icon(
+                                controller.isPlaying.value ? Icons.pause : Icons.play_arrow,
+                                color: AppColors.primaryColor,
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                          onPressed: controller.playPause,
+                        );
+                      }),
+
                       const SizedBox(width: 24),
                       IconButton(
                         icon: CustomSvg(asset: 'assets/icons/forWard.svg'),

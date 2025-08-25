@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kunci_hidup/themes/dark_theme.dart';
 import 'package:kunci_hidup/utils/app_constants.dart';
 import 'package:kunci_hidup/utils/message.dart';
@@ -20,29 +21,35 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.languages});
   final Map<String, Map<String, String>> languages;
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ThemeController>(
-      builder: (themeController) {
-        return GetBuilder<LocalizationController>(
-          builder: (localizeController) {
-            return GetMaterialApp(
-              title: AppConstants.APP_NAME,
-              debugShowCheckedModeBanner: false,
-              // theme: themeController.darkTheme ? dark() : light(),
-              theme: dark(),
-              defaultTransition: Transition.cupertino,
-              locale: localizeController.locale,
-              translations: Messages(languages: languages),
-              fallbackLocale: Locale(
-                AppConstants.languages[0].languageCode,
-                AppConstants.languages[0].countryCode,
-              ),
-              transitionDuration: const Duration(milliseconds: 500),
-              getPages: AppRoutes.pages,
-              // initialRoute: AppRoutes.splash,
-              home: Splash(),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return GetBuilder<ThemeController>(
+          builder: (themeController) {
+            return GetBuilder<LocalizationController>(
+              builder: (localizeController) {
+                return GetMaterialApp(
+                  title: AppConstants.APP_NAME,
+                  debugShowCheckedModeBanner: false,
+                  // theme: themeController.darkTheme ? dark() : light(),
+                  theme: dark(),
+                  defaultTransition: Transition.cupertino,
+                  locale: localizeController.locale,
+                  translations: Messages(languages: languages),
+                  fallbackLocale: Locale(
+                    AppConstants.languages[0].languageCode,
+                    AppConstants.languages[0].countryCode,
+                  ),
+                  transitionDuration: const Duration(milliseconds: 500),
+                  getPages: AppRoutes.pages,
+                  // initialRoute: AppRoutes.splash,
+                  home: Splash(),
+                );
+              },
             );
           },
         );
