@@ -5,4 +5,5 @@ class AppColors {
   static Color secondaryColor = Color(0xffEADBC8);
   
   static Color red = Color(0xffff0000);
+  static Color buttonColor = Color(0xF3F3F3).withOpacity(.10);
 }

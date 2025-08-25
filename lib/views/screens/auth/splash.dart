@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kunci_hidup/utils/app_colors.dart';
+import 'package:kunci_hidup/views/screens/auth/sign_in_option.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -90,7 +92,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
               Text(
                 "Kunci Hidup App",
                 style: TextStyle(
-                  fontFamily: "DM Sans",
+                  fontFamily: "DMSans",
                   fontWeight: FontWeight.w600,
                   fontSize: 20.toDouble() + (_animation.value / 25) - 7,
                   color: AppColors.primaryColor,
@@ -111,6 +113,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     if (time.elapsed < Duration(seconds: 2)) {
       await Future.delayed(Duration(seconds: 2) - time.elapsed);
     }
+    Get.offAll(()=> SignInOption(),transition: Transition.noTransition);
 
     // if (isVerified) {
     //   Get.to(DesignSystem());

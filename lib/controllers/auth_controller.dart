@@ -9,6 +9,30 @@ import 'package:kunci_hidup/utils/show_snackbar.dart';
 class AuthController extends GetxController {
   RxBool isLoggedIn = RxBool(false);
   final api = ApiService();
+  // Controller for email input
+  final emailController = TextEditingController();
+
+  // Observable for email error message (empty means no error)
+  final emailError = ''.obs;
+
+  // Simple email regex pattern for validation
+  final RegExp emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+
+  // Validate email, returns true if valid
+  bool validateEmail() {
+    final email = emailController.text.trim();
+
+    if (email.isEmpty) {
+      emailError.value = 'Email cannot be empty';
+      return false;
+    } else if (!emailRegex.hasMatch(email)) {
+      emailError.value = 'Please enter a valid email';
+      return false;
+    }
+
+    emailError.value = '';
+    return true;
+  }
 
   Future<String> login(
     String email,

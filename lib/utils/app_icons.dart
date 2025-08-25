@@ -8,7 +8,7 @@ class AppIcons {
   static const String curvyShape = 'assets/icons/curvy_shape.svg';
   static const String swim = 'assets/icons/swim.svg';
   static const String back = 'assets/icons/back.svg';
-  static const String forward = 'assets/icons/forward.svg';
+  static const String forward = 'assets/icons/forWard.svg';
   static const String backRounded = 'assets/icons/back_rounded.svg';
   static const String eyeOff = 'assets/icons/eye_off.svg';
   static const String eye = 'assets/icons/eye.svg';
