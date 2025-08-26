@@ -1,122 +1,72 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:kunci_hidup/utils/app_colors.dart';
 import 'package:kunci_hidup/utils/custom_svg.dart';
+import 'package:kunci_hidup/views/screens/home/home.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String? title;
-  final bool hasLeading;
-  final bool showLogo;
-  final bool visible;
-  final String? leadingIcon;
-  final String? subtitle;
-  final Widget? trailing;
-
+class CustomAppBar extends StatelessWidget {
+  final String assets;
+  final String title;
+  final String subTitle;
   const CustomAppBar({
-    super.key,
-    this.title,
-    this.hasLeading = true,
-    this.showLogo = false,
-    this.visible = true,
-    this.leadingIcon,
-    this.subtitle,
-    this.trailing,
+    super.key, required this.assets, required this.title, required this.subTitle,
   });
 
   @override
-  Size get preferredSize => Size(double.infinity, 82);
-
-  @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: visible ? 5 : 0,
-          sigmaY: visible ? 5 : 0,
-          tileMode: TileMode.clamp,
+    return Container(
+      height: 126.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20.r),
+          bottomRight: Radius.circular(20.r),
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: visible
-                ? Color(0xff5d4728).withValues(alpha: 0.40)
-                : Colors.transparent,
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
-            border: Border(
-              bottom: BorderSide(
-                color: visible
-                    ? Colors.white.withValues(alpha: 0.2)
-                    : Colors.transparent,
-                width: 1.5,
-              ),
-            ),
-          ),
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 18),
-              child: Row(
-                children: [
-                  SizedBox(width: 16),
-                  hasLeading
-                      ? InkWell(
-                          child: CustomSvg(
-                            asset: "assets/icons/back.svg",
-                            height: 24,
-                            width: 24,
-                          ),
-                        )
-                      : SizedBox(height: 24, width: 24),
-                  SizedBox(width: 24),
-
-                  if (leadingIcon != null)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16),
-                      child: CustomSvg(
-                        asset: leadingIcon!,
-                        height: 46,
-                        width: 46,
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: leadingIcon == null
-                          ? CrossAxisAlignment.center
-                          : CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          title ?? "",
-                          style: TextStyle(
-                            fontFamily: "DM Sans",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24,
-                            height: 1,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                        if (subtitle != null) const SizedBox(height: 4),
-                        if (subtitle != null)
-                          Text(
-                            subtitle!,
-                            style: TextStyle(
-                              fontFamily: "DM Sans",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              height: 1,
-                              color: Colors.white,
-                            ),
-                          ),
-                      ],
-                    ),
+        color: Color(0xDFF3F3F3).withOpacity(.10),
+      ),
+      child: Padding(
+        padding:  EdgeInsets.symmetric(horizontal: 15.sp),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            GestureDetector(
+                onTap: (){
+                  Get.back();
+                },
+                child: CustomSvg(asset: "assets/icons/back.svg")),
+            SizedBox(width: 10.w),
+            CustomSvg(asset: "assets/icons/homeOverwhelmed/$assets.svg"),
+            SizedBox(width: 10.w),
+            // Title text
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'DMSans',
+                    color: AppColors.primaryColor,
+                    letterSpacing: -0.3,
                   ),
-
-                  trailing != null ? Container() : const SizedBox(width: 24),
-                  const SizedBox(width: 16),
-                ],
-              ),
+                ),
+                Text(
+                  subTitle,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'DMSans',
+                    color: AppColors.white,
+                    letterSpacing: -0.3,
+                  ),
+                ),
+              ],
             ),
-          ),
+          ],
         ),
       ),
     );

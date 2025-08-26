@@ -1,0 +1,26 @@
+{
+  "Feel anxious": {
+    "artist": "Voice by Ava",
+    "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+  },
+  "Overwhelmed": {
+    "artist": "Voice by Mia",
+    "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+  },
+  "Can’t sleep": {
+    "artist": "Voice by Liam",
+    "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+  },
+  "Need clarity": {
+    "artist": "Voice by Noah",
+    "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+  },
+  "Study": {
+    "artist": "Instrumental",
+    "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+  },
+  "Relax": {
+    "artist": "Voice by Emma",
+    "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"
+  }
+}

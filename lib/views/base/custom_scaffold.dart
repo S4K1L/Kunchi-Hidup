@@ -37,7 +37,9 @@ class CustomScaffold extends StatelessWidget {
       ),
     );
 
-    double glowSize = MediaQuery.of(context).size.width - 70;
+    // ✅ fix: clamp so glowSize can’t go negative
+    double glowSize =
+    (MediaQuery.of(context).size.width - 70).clamp(0, double.infinity);
 
     return Scaffold(
       appBar: appBar,
@@ -48,7 +50,8 @@ class CustomScaffold extends StatelessWidget {
         backgroundColor: Colors.black, // Visible background
         child: SafeArea(
           child: ListView(
-            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 15),
+            padding:
+            const EdgeInsets.symmetric(vertical: 32, horizontal: 15),
             children: drawerBarChildren!,
           ),
         ),
@@ -72,7 +75,7 @@ class CustomScaffold extends StatelessWidget {
             Positioned(
               left: 0,
               right: 0,
-              top: -glowSize / 2,
+              top: -glowSize / 4,
               child: Container(
                 height: glowSize,
                 width: glowSize,
@@ -88,7 +91,7 @@ class CustomScaffold extends StatelessWidget {
             Positioned(
               left: 0,
               right: 0,
-              bottom: -glowSize + 80,
+              bottom: -glowSize + 100,
               child: Container(
                 height: glowSize,
                 width: glowSize,
@@ -126,11 +129,13 @@ class CustomScaffold extends StatelessWidget {
       ),
 
       // Bottom bar
-      bottomNavigationBar: bottomBarChildren == null || bottomBarChildren!.isEmpty
+      bottomNavigationBar:
+      bottomBarChildren == null || bottomBarChildren!.isEmpty
           ? null
           : Container(
         color: Colors.transparent,
-        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 15),
+        padding:
+        const EdgeInsets.symmetric(vertical: 32, horizontal: 15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: bottomBarChildren!,

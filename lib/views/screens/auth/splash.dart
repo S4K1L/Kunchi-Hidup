@@ -16,6 +16,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation _animation;
 
+
   @override
   void initState() {
     super.initState();
@@ -44,6 +45,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    double circleSize = (MediaQuery.of(context).size.width - 100).clamp(0, double.infinity);
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -60,13 +62,14 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
               child: Container(),
             ),
           ),
+
           ImageFiltered(
             imageFilter: ImageFilter.blur(sigmaX: 374, sigmaY: 374),
             child: Opacity(
               opacity: _animation.value / (278 * 2),
               child: Container(
-                width: MediaQuery.of(context).size.width - 100,
-                height: MediaQuery.of(context).size.width - 100,
+                width: circleSize,
+                height: circleSize,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.primaryColor,

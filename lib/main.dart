@@ -1,3 +1,4 @@
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kunci_hidup/themes/dark_theme.dart';
 import 'package:kunci_hidup/utils/app_constants.dart';
@@ -11,12 +12,22 @@ import 'controllers/theme_controller.dart';
 import 'helpers/di.dart' as di;
 import 'helpers/route.dart';
 
+late final AudioHandler audioHandler;
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  print('Starting dependency injection');
   Map<String, Map<String, String>> languages = await di.init();
+  print('Dependency injection complete');
+
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   runApp(MyApp(languages: languages));
+  print('App started');
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.languages});

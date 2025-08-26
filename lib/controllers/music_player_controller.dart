@@ -1,5 +1,8 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
+import '../models/audio_model.dart';
 
 class MusicPlayerController extends GetxController {
   final AudioPlayer audioPlayer = AudioPlayer();
@@ -14,31 +17,34 @@ class MusicPlayerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchAndPlayAudio();
     audioPlayer.positionStream.listen((pos) => position.value = pos);
     audioPlayer.durationStream.listen((dur) => duration.value = dur);
+
     audioPlayer.playerStateStream.listen((state) {
       isPlaying.value = state.playing;
-      if (state.processingState == ProcessingState.completed) {
-        // Handle end of playback
-      }
     });
   }
 
-  Future<void> fetchAndPlayAudio() async {
+  Future<void> fetchAndPlayAudio(String moodTitle) async {
     try {
       isLoading.value = true;
 
-      // 🔁 MOCK API - Replace with your actual HTTP request
-      await Future.delayed(Duration(seconds: 1)); // simulate API delay
-      final String audioUrl = 'https://example.com/audio.mp3';
-      audioTitle.value = 'Grief Ritual - Breathe Into Loss';
-      audioArtist.value = 'Voice By Daissy';
+      final String response =
+      await rootBundle.loadString('assets/mock_data/audio_info.json');
+      final Map<String, dynamic> data = json.decode(response);
 
-      await audioPlayer.setUrl(audioUrl);
+      if (!data.containsKey(moodTitle)) {
+        throw Exception("No audio found for $moodTitle");
+      }
+
+      final audioInfo = AudioInfo.fromJson(data[moodTitle]);
+
+      audioArtist.value = audioInfo.artist;
+
+      await audioPlayer.setUrl(audioInfo.url);
       audioPlayer.play();
     } catch (e) {
-      print("Error loading audio: $e");
+      print("Error fetching/playing audio: $e");
     } finally {
       isLoading.value = false;
     }
@@ -72,6 +78,7 @@ class MusicPlayerController extends GetxController {
 
   @override
   void onClose() {
+    audioPlayer.pause();
     audioPlayer.dispose();
     super.onClose();
   }

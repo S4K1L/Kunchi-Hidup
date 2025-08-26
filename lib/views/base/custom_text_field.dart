@@ -27,13 +27,13 @@ class CustomTextField extends StatefulWidget {
     this.trailing,
     this.isPassword = false,
     this.isDisabled = false,
-    this.radius = 50,
+    this.radius = 12,
     this.lines = 1,
     this.textInputType,
     this.controller,
     this.onTap,
     this.errorText,
-    this.height = 50,
+    this.height,
     this.width,
   });
 
@@ -91,11 +91,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
               vertical: widget.lines == 1 ? 0 : 20,
             ),
             decoration: BoxDecoration(
-              color: AppColors.secondaryColor,
+              color: AppColors.white.withOpacity(.10),
               borderRadius: BorderRadius.circular(widget.radius),
-              border: isFocused
-                  ? Border.all(color: AppColors.primaryColor)
-                  : Border.all(width: 0),
+              border: Border.all(color: AppColors.primaryColor.withOpacity(.30)),
             ),
             child: Row(
               spacing: 12,
@@ -117,31 +115,38 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   child: TextField(
                     focusNode: focusNode,
                     controller: widget.controller,
-                    maxLines: widget.lines,
+                    maxLines: 20,
                     cursorColor: AppColors.primaryColor,
                     keyboardType: widget.textInputType,
                     obscureText: isObscured,
                     enabled: !widget.isDisabled && widget.onTap == null,
+                    textAlignVertical: TextAlignVertical.top, // 👈 makes text start at top
                     onTapOutside: (event) {
                       setState(() {
                         isFocused = false;
                         focusNode.unfocus();
                       });
                     },
+
                     style: AppTexts.tsmr.copyWith(
                       color: AppColors.secondaryColor,
                     ),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       isDense: true,
-                      contentPadding: EdgeInsets.zero,
+                      contentPadding: const EdgeInsets.only(
+                        top: 12, // 👈 space from top
+                        left: 0,
+                        right: 0,
+                      ),
                       hintText: widget.hintText,
-                      hintStyle: AppTexts.tsmr.copyWith(
+                      hintStyle: TextStyle(
                         color: AppColors.secondaryColor,
                       ),
                     ),
                   ),
                 ),
+
                 if (widget.trailing != null)
                   SvgPicture.asset(
                     widget.trailing!,

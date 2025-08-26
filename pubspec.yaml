@@ -22,6 +22,8 @@ dependencies:
   just_audio: ^0.9.36
   audio_video_progress_bar: ^1.0.1
   flutter_screenutil: ^5.9.3
+  audio_session: ^0.1.13
+  audio_service: ^0.18.18
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +43,7 @@ flutter:
     - assets/icons/homeCategoryIcon/
     - assets/icons/homeOverwhelmed/
     - assets/language/
+    - assets/mock_data/
 
   fonts:
     - family: CormorantGaramond

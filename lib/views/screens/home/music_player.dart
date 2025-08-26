@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:kunci_hidup/utils/custom_svg.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
 import '../../../controllers/music_player_controller.dart';
 import '../../../utils/app_colors.dart';
 import '../../base/custom_wave.dart';
-import '../subscriptions/subscriptions.dart';
 
 class MusicPlayer extends StatefulWidget {
-  const MusicPlayer({super.key});
+  final String audioLink;
+  final String title;
+   const MusicPlayer({super.key, required this.audioLink, required this.title});
 
   @override
   State<MusicPlayer> createState() => _MusicPlayerState();
@@ -19,63 +19,14 @@ class MusicPlayer extends StatefulWidget {
 class _MusicPlayerState extends State<MusicPlayer> {
   final MusicPlayerController controller = Get.put(MusicPlayerController());
 
-  final AudioPlayer _audioPlayer = AudioPlayer();
   late Stream<Duration> _positionStream;
   late Stream<Duration?> _durationStream;
 
   @override
   void initState() {
     super.initState();
-    _initAudio();
-
-    // Listen to player state changes to detect when audio finishes
-    _audioPlayer.playerStateStream.listen((playerState) {
-      if (playerState.processingState == ProcessingState.completed) {
-        Get.to(()=> SubscriptionsPage());
-      }
-    });
+    controller.fetchAndPlayAudio(widget.title);
   }
-
-
-  Future<void> _initAudio() async {
-    try {
-      await _audioPlayer.setAsset('assets/audio/sample.mp3');
-      _positionStream = _audioPlayer.positionStream;
-      _durationStream = _audioPlayer.durationStream;
-    } catch (e) {
-      print("Error loading audio: $e");
-    }
-  }
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return '$minutes:$seconds';
-  }
-
-
-  @override
-  void dispose() {
-    _audioPlayer.dispose();
-    super.dispose();
-  }
-
-  void _skipForward() {
-    final newPosition = _audioPlayer.position + const Duration(seconds: 10);
-    final total = _audioPlayer.duration ?? Duration.zero;
-
-    if (newPosition < total) {
-      _audioPlayer.seek(newPosition);
-    } else {
-      _audioPlayer.seek(total);
-    }
-  }
-
-  void _skipBackward() {
-    final newPosition = _audioPlayer.position - const Duration(seconds: 10);
-    _audioPlayer.seek(newPosition < Duration.zero ? Duration.zero : newPosition);
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -83,10 +34,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
       isScrollable: true,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(
             children: [
-              const SizedBox(height: 16),
+               SizedBox(height: 16),
               Align(
                 alignment: Alignment.topLeft,
                 child: GestureDetector(
@@ -94,35 +45,25 @@ class _MusicPlayerState extends State<MusicPlayer> {
                   onTap: () => Navigator.pop(context),
                 ),
               ),
-              const SizedBox(height: 32),
-              Image.asset("assets/images/logo.png", width: 144),
-              const SizedBox(height: 78),
+              SizedBox(height: 32.h),
+              Image.asset("assets/images/logo.png", width: 144.w),
+              SizedBox(height: 78.h),
 
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(123),
-                  color: AppColors.primaryColor.withOpacity(.10),
-                  border: Border.all(color: AppColors.primaryColor, width: 5),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(60),
-                  child: CustomSvg(asset: "assets/icons/earphone.svg"),
-                ),
-              ),
+              CustomSvg(asset: "assets/icons/musicHead.svg"),
 
-              const SizedBox(height: 24),
-              Obx(() => Text(
-                controller.audioTitle.value,
+               SizedBox(height: 24.h),
+              Text(
+                widget.title,
                 style: TextStyle(
                   fontSize: 26.sp,
                   fontWeight: FontWeight.w700,
-                  fontFamily: 'CormorantGaramond',
+                  fontFamily: 'DMSans',
                   color: AppColors.primaryColor,
                 ),
                 textAlign: TextAlign.center,
-              )),
+              ),
 
-              const SizedBox(height: 10),
+               SizedBox(height: 10.h),
               Obx(() => Text(
                 controller.audioArtist.value,
                 style: TextStyle(
@@ -133,7 +74,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 ),
               )),
 
-              const SizedBox(height: 50),
+               SizedBox(height: 50.h),
 
               // Progress bar with current time and total duration
               Obx(() {
@@ -141,11 +82,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 final dur = controller.duration.value ?? Duration(seconds: 1);
                 return Row(
                   children: [
-                    Text(controller.formatDuration(pos), style: TextStyle(color: Colors.white, fontSize: 12)),
-                    SizedBox(width: 8),
+                    Text(controller.formatDuration(pos), style: TextStyle(color: Colors.white, fontSize: 12.sp)),
+                    SizedBox(width: 8.w),
                     Expanded(child: CustomWaveformBar(current: pos, total: dur)),
-                    SizedBox(width: 8),
-                    Text(controller.formatDuration(dur), style: TextStyle(color: Colors.white, fontSize: 12)),
+                    SizedBox(width: 8.w),
+                    Text(controller.formatDuration(dur), style: TextStyle(color: Colors.white, fontSize: 12.sp)),
                   ],
                 );
               }),
@@ -153,14 +94,14 @@ class _MusicPlayerState extends State<MusicPlayer> {
 
 
 
-              const SizedBox(height: 24),
+               SizedBox(height: 24.h),
 
               // Playback controls
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 47),
+                padding:  EdgeInsets.symmetric(horizontal: 47.w),
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
+                      borderRadius: BorderRadius.circular(22.r),
                       color: Colors.white.withOpacity(.10),
                       border: Border.all(color: AppColors.primaryColor.withOpacity(.40))
                   ),
@@ -169,10 +110,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
                     children: [
                       IconButton(
                         icon: CustomSvg(asset: 'assets/icons/backWard.svg'),
-                        iconSize: 32,
-                        onPressed: _skipBackward,
+                        iconSize: 32..sp,
+                        onPressed: controller.skipBackward,
                       ),
-                      const SizedBox(width: 24),
+                       SizedBox(width: 24.w),
                       Obx(() {
                         if (controller.isLoading.value) {
                           return CircularProgressIndicator();
@@ -181,12 +122,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
                         return IconButton(
                           icon: CircleAvatar(
                             backgroundColor: AppColors.primaryColor.withOpacity(.21),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5),
+                            child: Center(
                               child: Icon(
                                 controller.isPlaying.value ? Icons.pause : Icons.play_arrow,
                                 color: AppColors.primaryColor,
-                                size: 30,
+                                size: 30.sp,
                               ),
                             ),
                           ),
@@ -194,11 +134,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
                         );
                       }),
 
-                      const SizedBox(width: 24),
+                       SizedBox(width: 24.w),
                       IconButton(
                         icon: CustomSvg(asset: 'assets/icons/forWard.svg'),
-                        iconSize: 32,
-                        onPressed: _skipForward,
+                        iconSize: 32.sp,
+                        onPressed: controller.skipForward,
                       ),
                     ],
                   ),
