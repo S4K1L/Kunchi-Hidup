@@ -6,9 +6,15 @@ import 'package:kunci_hidup/utils/custom_svg.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
 import 'package:kunci_hidup/views/screens/home/list_page/ask_within.dart';
 import 'package:kunci_hidup/views/screens/home/list_page/portal_rasa.dart';
+import 'package:kunci_hidup/views/screens/home/list_page/writing_room.dart';
 import '../../base/category_button.dart';
 import '../../base/list_card_widgets.dart';
+import '../auth/privacy_and_policy.dart';
+import '../auth/sign_in_option.dart';
+import '../subscriptions/subscriptions.dart';
+import 'list_page/monthly_mirror.dart';
 import 'list_page/spiral_journey.dart';
+import 'monthly_reflection.dart';
 import 'music_player.dart';
 
 class HomePage extends StatelessWidget {
@@ -78,7 +84,64 @@ class HomePage extends StatelessWidget {
                   Builder(
                     builder: (context) => GestureDetector(
                       onTap: () {
-                        Scaffold.of(context).openDrawer();
+                        showMenu(
+                          context: context,
+                          position: RelativeRect.fromLTRB(10, 80, 10, 0),
+                          // position of menu
+                          items: [
+                            PopupMenuItem(
+                              child: Text(
+                                "Privacy Policy",
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'DMSans',
+                                  color: AppColors.primaryColor,
+                                ),
+                              ),
+                              onTap: () {
+                                Get.to(()=> PrivacyPolicyPage());
+                              },
+                            ),
+                            PopupMenuItem(
+                              child: Text("General Terms",style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'DMSans',
+                                color: AppColors.primaryColor,
+                              ),),
+                              onTap: () {
+                                Get.to(()=> SubscriptionsPage());
+
+                              },
+                            ),
+                            PopupMenuItem(
+                              child: Text("Monthly Spiral Reflection",style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                                fontFamily: 'DMSans',
+                                color: AppColors.primaryColor,
+                              ),),
+                              onTap: () {
+                                Get.to(()=> MonthlyReflection());
+                              },
+                            ),
+                            PopupMenuItem(child: Text("Log Out",style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: 'DMSans',
+                              color: AppColors.primaryColor,
+                            ),), onTap: () {
+                              Get.offAll(()=> SignInOption());
+                            }),
+                          ],
+                          color: AppColors.black,
+                          // background
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(color: AppColors.primaryColor),
+                          ),
+                        );
                       },
                       child: CustomSvg(asset: "assets/icons/drawer.svg"),
                     ),
@@ -260,29 +323,32 @@ class HomePage extends StatelessWidget {
                                   "Let your soul choose what it\nneeds right now.",
                             ),
                           );
-                        }
-                        else if(item["assets"] == 'portal'){
+                        } else if (item["assets"] == 'portal') {
                           Get.to(
-                                () => PortalRasa(
+                            () => PortalRasa(
                               appBarAssets: item["assets"]!,
                               appBarTitle: item["title"]!,
                               appBarSubTitle: item["subTitle"]!,
                             ),
                           );
-
-                        }else if(item["assets"] == 'ask'){
+                        } else if (item["assets"] == 'ask') {
                           Get.to(
-                                () => AskWithIn(
+                            () => AskWithIn(
                               appBarAssets: item["assets"]!,
                               appBarTitle: item["title"]!,
                               appBarSubTitle: item["subTitle"]!,
                             ),
                           );
-
-                        }else if(item["assets"] == 'ruang'){
-
-                        }else if(item["assets"] == 'mirror'){
-
+                        } else if (item["assets"] == 'ruang') {
+                          Get.to(
+                            () => WritingRoom(
+                              appBarAssets: item["assets"]!,
+                              appBarTitle: item["title"]!,
+                              appBarSubTitle: item["subTitle"]!,
+                            ),
+                          );
+                        } else if (item["assets"] == 'mirror') {
+                          Get.to(() => MonthlyMirror());
                         }
                       }
                     },

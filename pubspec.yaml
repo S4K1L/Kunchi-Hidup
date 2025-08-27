@@ -24,6 +24,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   audio_session: ^0.1.13
   audio_service: ^0.18.18
+  fl_chart: ^0.69.0
 
 dev_dependencies:
   flutter_test:

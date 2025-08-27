@@ -41,10 +41,22 @@ class _AboutKHState extends State<AboutKH> {
       bottomBarChildren: [
         BottomCircularButton(
           onPress: () {
-            Get.to(()=> HelpUsHand());
+            if (selectedIndex == null) {
+              // show warning
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Please select at least one option."),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            } else {
+              // proceed
+              Get.to(() => const HelpUsHand());
+            }
           },
           currentStep: 2,
         ),
+
       ],
       children: [
         Column(

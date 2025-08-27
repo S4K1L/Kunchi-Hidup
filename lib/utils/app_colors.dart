@@ -10,6 +10,8 @@ class AppColors {
   static Color textGrey = Color(0x99999999);
   static Color dividerColor = Color(0xFF242424);
   static Color cardBackground = Color(0x1A1A1A);
+  static Color inProgress = Color(0xFFD57200);
+  static Color completed = Color(0xFF05D853);
   static Color cardBorder = Color(0x50505050);
   static Color black = Color(0xff000000);
   static Color green = Colors.green;
