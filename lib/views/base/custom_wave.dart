@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/app_colors.dart';
 
 class CustomWaveformBar extends StatelessWidget {
@@ -6,7 +7,7 @@ class CustomWaveformBar extends StatelessWidget {
   final Duration total;
   final int barsCount;
 
-  const CustomWaveformBar({
+   const CustomWaveformBar({
     super.key,
     required this.current,
     required this.total,
@@ -34,16 +35,16 @@ class CustomWaveformBar extends StatelessWidget {
           final height = heights[index % heights.length];
 
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2.5),
+            padding:  EdgeInsets.symmetric(horizontal: 2.w),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              width: 5,
+              duration:  Duration(milliseconds: 300),
+              width: 4.w,
               height: height,
               decoration: BoxDecoration(
                 color: isActive
                     ? AppColors.primaryColor
                     : Colors.white.withOpacity(0.25),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
             ),
           );

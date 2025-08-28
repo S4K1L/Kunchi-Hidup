@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/custom_svg.dart';
 
@@ -8,7 +9,7 @@ class QuestionButton extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  const QuestionButton({
+   const QuestionButton({
     super.key,
     required this.title,
     required this.assets,
@@ -19,25 +20,25 @@ class QuestionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 18),
+      padding:  EdgeInsets.only(bottom: 18.w),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             color: isSelected ? Colors.orange : Colors.white.withOpacity(.10),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15),
+            padding:  EdgeInsets.symmetric(vertical: 15.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomSvg(asset: "assets/icons/$assets.svg"),
-                const SizedBox(width: 8),
+                 SizedBox(width: 8.w),
                 Text(
                   title,
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style:  TextStyle(
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'DMSans',
                     color: Colors.white,

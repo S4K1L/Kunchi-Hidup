@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
 import 'package:kunci_hidup/views/screens/auth/other_sign_in_option.dart';
+import 'package:kunci_hidup/views/screens/home/home.dart';
 import '../../../utils/custom_svg.dart';
 import '../../base/agree_and_term_widgets.dart';
 import '../../base/custom_auth_button.dart';
@@ -55,7 +56,7 @@ class SignInOption extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                   Text(
                     "Sign in or register to use your Kunci Hidup\ncollection on an unlimited number of devices.",
                     style: TextStyle(
@@ -97,7 +98,9 @@ class SignInOption extends StatelessWidget {
                   OrSeparatorWidget(),
                   SizedBox(height: 12.h),
                   CustomAuthButton(
-                    onPress: () {},
+                    onPress: () {
+                      Get.to(() => HomePage());
+                    },
                     logo: '',
                     title: 'Login as Guest ',
                   ),

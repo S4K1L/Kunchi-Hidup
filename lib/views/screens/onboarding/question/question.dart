@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
 import 'package:kunci_hidup/views/screens/onboarding/chakra_details.dart';
@@ -6,7 +7,7 @@ import '../../../base/progress_bar.dart';
 import '../../../base/question_button.dart';
 
 class Question extends StatefulWidget {
-  const Question({super.key});
+   Question({super.key});
 
   @override
   State<Question> createState() => _QuestionState();
@@ -31,7 +32,7 @@ class _QuestionState extends State<Question> {
       selectedAnswerIndex = index;
     });
 
-    Future.delayed(const Duration(milliseconds: 300), () {
+    Future.delayed( Duration(milliseconds: 300), () {
       if (currentQuestionIndex < questions.length - 1) {
         setState(() {
           currentQuestionIndex++;
@@ -51,23 +52,23 @@ class _QuestionState extends State<Question> {
       hasBottomGlow: false,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding:  EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(
             children: [
-              const SizedBox(height: 30),
+               SizedBox(height: 30.h),
               ProgressBar(currentIndex: currentQuestionIndex),
-              const SizedBox(height: 32),
-              Image.asset("assets/images/logo.png", width: 112),
-              const SizedBox(height: 35),
+               SizedBox(height: 32.h),
+              Image.asset("assets/images/logo.png", width: 112.w),
+               SizedBox(height: 35.h),
 
               // 🔄 Animate Question Text
               AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
+                duration:  Duration(milliseconds: 300),
                 transitionBuilder: (child, animation) => FadeTransition(
                   opacity: animation,
                   child: SlideTransition(
                     position: Tween<Offset>(
-                      begin: const Offset(0.0, 0.2),
+                      begin:  Offset(0.0, 0.2),
                       end: Offset.zero,
                     ).animate(animation),
                     child: child,
@@ -76,8 +77,8 @@ class _QuestionState extends State<Question> {
                 child: Text(
                   questions[currentQuestionIndex],
                   key: ValueKey<int>(currentQuestionIndex),
-                  style: const TextStyle(
-                    fontSize: 26,
+                  style:  TextStyle(
+                    fontSize: 26.sp,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'CormorantGaramond',
                     color: Colors.white,
@@ -86,7 +87,7 @@ class _QuestionState extends State<Question> {
                 ),
               ),
 
-              const SizedBox(height: 55),
+               SizedBox(height: 55.h),
 
               // Answer Buttons
               QuestionButton(
@@ -108,8 +109,8 @@ class _QuestionState extends State<Question> {
                 onTap: () => selectAnswer(2),
               ),
 
-              const SizedBox(height: 55),
-              const Text(
+               SizedBox(height: 55),
+               Text(
                 "Jawabanmu akan membantu kami\nmengenali energimu, tanpa menghakimi",
                 style: TextStyle(
                   fontSize: 16,

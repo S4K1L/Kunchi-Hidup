@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
 import 'package:kunci_hidup/views/screens/onboarding/ask_question.dart';
@@ -7,7 +8,7 @@ import '../../base/edge_blur_overlay.dart';
 import '../../base/ios_dialog.dart';
 
 class HelpUsHand extends StatefulWidget {
-  const HelpUsHand({super.key});
+   HelpUsHand({super.key});
 
   @override
   State<HelpUsHand> createState() => _HelpUsHandState();
@@ -41,9 +42,9 @@ class _HelpUsHandState extends State<HelpUsHand> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 32),
-            Image.asset("assets/images/logo.png", width: 112),
-            const SizedBox(height: 35),
+             SizedBox(height: 32.h),
+            Image.asset("assets/images/logo.png", width: 112.w),
+             SizedBox(height: 35.h),
             Stack(
               clipBehavior: Clip.none,
               children: [
@@ -51,13 +52,13 @@ class _HelpUsHandState extends State<HelpUsHand> {
                   'assets/images/handShake.png',
                   fit: BoxFit.contain,
                 ),
-                const Positioned(
+                 Positioned(
                   top: 0,
                   left: 0,
                   bottom: 0,
                   child: EdgeBlurOverlay(align: Alignment.centerLeft),
                 ),
-                const Positioned(
+                 Positioned(
                   top: 0,
                   right: 0,
                   bottom: 0,
@@ -66,24 +67,24 @@ class _HelpUsHandState extends State<HelpUsHand> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding:  EdgeInsets.symmetric(horizontal: 15.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children:  [
                   Text(
                     "Help us to help others",
                     style: TextStyle(
-                      fontSize: 35,
+                      fontSize: 35.sp,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'CormorantGaramond',
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   Text(
                     "With your help, we can reach the right people through ads and help them stay focused.",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w400,
                       fontFamily: 'DMSans',
                       color: Colors.white,

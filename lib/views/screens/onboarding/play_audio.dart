@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:kunci_hidup/utils/custom_svg.dart';
@@ -8,7 +9,7 @@ import '../../base/custom_wave.dart';
 import '../subscriptions/subscriptions.dart';
 
 class PlayAudio extends StatefulWidget {
-  const PlayAudio({super.key});
+   PlayAudio({super.key});
 
   @override
   State<PlayAudio> createState() => _PlayAudioState();
@@ -57,7 +58,7 @@ class _PlayAudioState extends State<PlayAudio> {
   }
 
   void _skipForward() {
-    final newPosition = _audioPlayer.position + const Duration(seconds: 10);
+    final newPosition = _audioPlayer.position +  Duration(seconds: 10);
     final total = _audioPlayer.duration ?? Duration.zero;
 
     if (newPosition < total) {
@@ -68,7 +69,7 @@ class _PlayAudioState extends State<PlayAudio> {
   }
 
   void _skipBackward() {
-    final newPosition = _audioPlayer.position - const Duration(seconds: 10);
+    final newPosition = _audioPlayer.position -  Duration(seconds: 10);
     _audioPlayer.seek(newPosition < Duration.zero ? Duration.zero : newPosition);
   }
 
@@ -79,10 +80,10 @@ class _PlayAudioState extends State<PlayAudio> {
       isScrollable: true,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding:  EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(
             children: [
-              const SizedBox(height: 16),
+               SizedBox(height: 16.h),
               Align(
                 alignment: Alignment.topLeft,
                 child: GestureDetector(
@@ -90,38 +91,38 @@ class _PlayAudioState extends State<PlayAudio> {
                   onTap: () => Navigator.pop(context),
                 ),
               ),
-              const SizedBox(height: 32),
-              Image.asset("assets/images/logo.png", width: 144),
-              const SizedBox(height: 78),
+               SizedBox(height: 32.h),
+              Image.asset("assets/images/logo.png", width: 144.w),
+               SizedBox(height: 78.h),
 
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(123),
+                  borderRadius: BorderRadius.circular(123.h),
                   color: AppColors.primaryColor.withOpacity(.10),
-                  border: Border.all(color: AppColors.primaryColor, width: 5),
+                  border: Border.all(color: AppColors.primaryColor, width: 5.w),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(60),
+                  padding:  EdgeInsets.all(60.sp),
                   child: CustomSvg(asset: "assets/icons/earphone.svg"),
                 ),
               ),
 
-              const SizedBox(height: 24),
+               SizedBox(height: 24.h),
               Text(
                 "Grief Ritual - Breathe Into Loss",
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 26.sp,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'CormorantGaramond',
                   color: AppColors.primaryColor,
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 10),
-              const Text(
+               SizedBox(height: 10.h),
+               Text(
                 "Voice By Daissy",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'DMSans',
                   color: Colors.white,
@@ -129,42 +130,42 @@ class _PlayAudioState extends State<PlayAudio> {
                 textAlign: TextAlign.center,
               ),
 
-              const SizedBox(height: 50),
+               SizedBox(height: 50.h),
 
               // Progress bar with current time and total duration
               StreamBuilder<Duration>(
                 stream: _audioPlayer.positionStream,
                 builder: (context, snapshot) {
                   final position = snapshot.data ?? Duration.zero;
-                  final duration = _audioPlayer.duration ?? const Duration(seconds: 1);
+                  final duration = _audioPlayer.duration ??  Duration(seconds: 1);
 
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding:  EdgeInsets.symmetric(horizontal: 20.w),
                     child: Row(
                       children: [
                         // Start Time
                         Text(
                           _formatDuration(position),
-                          style: const TextStyle(
+                          style:  TextStyle(
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 12.sp,
                           ),
                         ),
-                        const SizedBox(width: 8),
+                         SizedBox(width: 8.w),
 
                         // Waveform Progress Bar
                         Expanded(
                           child: CustomWaveformBar(current: position, total: duration),
                         ),
 
-                        const SizedBox(width: 8),
+                         SizedBox(width: 8.w),
 
                         // End Time
                         Text(
                           _formatDuration(duration),
-                          style: const TextStyle(
+                          style:  TextStyle(
                             color: Colors.white,
-                            fontSize: 12,
+                            fontSize: 12.sp,
                           ),
                         ),
                       ],
@@ -175,14 +176,14 @@ class _PlayAudioState extends State<PlayAudio> {
 
 
 
-              const SizedBox(height: 24),
+               SizedBox(height: 24.h),
 
               // Playback controls
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 47),
+                padding:  EdgeInsets.symmetric(horizontal: 47.w),
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(22),
+                    borderRadius: BorderRadius.circular(22.r),
                     color: Colors.white.withOpacity(.10),
                     border: Border.all(color: AppColors.primaryColor.withOpacity(.40))
                   ),
@@ -191,10 +192,10 @@ class _PlayAudioState extends State<PlayAudio> {
                     children: [
                       IconButton(
                         icon: CustomSvg(asset: 'assets/icons/backWard.svg'),
-                        iconSize: 32,
+                        iconSize: 32.sp,
                         onPressed: _skipBackward,
                       ),
-                      const SizedBox(width: 24),
+                       SizedBox(width: 24.w),
                       StreamBuilder<PlayerState>(
                         stream: _audioPlayer.playerStateStream,
                         builder: (context, snapshot) {
@@ -203,14 +204,14 @@ class _PlayAudioState extends State<PlayAudio> {
 
                           if (processingState == ProcessingState.loading ||
                               processingState == ProcessingState.buffering) {
-                            return const CircularProgressIndicator();
+                            return  CircularProgressIndicator();
                           } else if (isPlaying) {
                             return IconButton(
                               icon: CircleAvatar(
                                   backgroundColor: AppColors.primaryColor.withOpacity(.21),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Icon(Icons.pause, color: AppColors.primaryColor,size: 30,),
+                                    padding:  EdgeInsets.all(5.sp),
+                                    child: Icon(Icons.pause, color: AppColors.primaryColor,size: 30.sp,),
                                   )),
                               onPressed: _audioPlayer.pause,
                             );
@@ -219,18 +220,18 @@ class _PlayAudioState extends State<PlayAudio> {
                               icon: CircleAvatar(
                                   backgroundColor: AppColors.primaryColor.withOpacity(.21),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Icon(Icons.play_arrow, color: AppColors.primaryColor,size: 30,),
+                                    padding:  EdgeInsets.all(5),
+                                    child: Icon(Icons.play_arrow, color: AppColors.primaryColor,size: 30.sp,),
                                   )),
                               onPressed: _audioPlayer.play,
                             );
                           }
                         },
                       ),
-                      const SizedBox(width: 24),
+                       SizedBox(width: 24.w),
                       IconButton(
                         icon: CustomSvg(asset: 'assets/icons/forWard.svg'),
-                        iconSize: 32,
+                        iconSize: 32.sp,
                         onPressed: _skipForward,
                       ),
                     ],

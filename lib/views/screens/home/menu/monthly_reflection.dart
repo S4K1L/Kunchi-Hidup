@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:kunci_hidup/utils/app_colors.dart';
 import 'package:kunci_hidup/utils/custom_svg.dart';
 import 'package:kunci_hidup/views/base/continue_button.dart';
-import '../../../controllers/task_controller.dart';
-import '../../base/chakra_chart.dart';
-import '../../base/custom_scaffold.dart';
-import '../../base/task_card.dart';
+import '../../../../controllers/task_controller.dart';
+import '../../../base/chakra_chart.dart';
+import '../../../base/custom_scaffold.dart';
+import '../../../base/task_card.dart';
 
 class MonthlyReflection extends StatelessWidget {
   const MonthlyReflection({super.key});

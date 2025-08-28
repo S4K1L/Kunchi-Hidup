@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/custom_svg.dart';
 
@@ -8,7 +9,7 @@ class OptionButton extends StatelessWidget {
   final bool isSelected;
   final VoidCallback? onPressed;
 
-  const OptionButton({
+   const OptionButton({
     super.key,
     required this.logoName,
     required this.title,
@@ -28,29 +29,29 @@ class OptionButton extends StatelessWidget {
     final textColor = isSelected ? Colors.black : Colors.white;
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding:  EdgeInsets.only(bottom: 12.w),
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
           width: double.infinity,
-          height: 50,
+          height: 50.h,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
             color: backgroundColor,
           ),
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 6),
+                padding:  EdgeInsets.symmetric(vertical: 5.w, horizontal: 6.w),
                 child: Container(
-                  width: 40,
-                  height: 40,
+                  width: 40.w,
+                  height: 40.h,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10.r),
                     color: logoBgColor,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding:  EdgeInsets.all(10.sp),
                     child: CustomSvg(
                       asset: 'assets/icons/$logoName.svg',
                       color: logoColor,
@@ -58,11 +59,11 @@ class OptionButton extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 4),
+               SizedBox(width: 4.w),
               Text(
                 title,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'DMSans',
                   color: textColor,

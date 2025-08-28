@@ -14,7 +14,7 @@ import '../auth/sign_in_option.dart';
 import '../subscriptions/subscriptions.dart';
 import 'list_page/monthly_mirror.dart';
 import 'list_page/spiral_journey.dart';
-import 'monthly_reflection.dart';
+import 'menu/monthly_reflection.dart';
 import 'music_player.dart';
 
 class HomePage extends StatelessWidget {
@@ -190,7 +190,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 4),
+                    padding: EdgeInsets.symmetric(vertical: 4.w),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -198,7 +198,7 @@ class HomePage extends StatelessWidget {
                         Text(
                           "Overwhelmed",
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w400,
                             fontFamily: 'DMSans',
                             color: AppColors.primaryColor,
@@ -206,11 +206,11 @@ class HomePage extends StatelessWidget {
                         ),
                         SizedBox(width: 4.w),
                         CircleAvatar(
-                          radius: 10,
+                          radius: 10.r,
                           backgroundColor: AppColors.black,
                           child: CustomSvg(
                             asset: "assets/icons/categorySelected.svg",
-                            width: 10,
+                            width: 10.w,
                           ),
                         ),
                       ],
