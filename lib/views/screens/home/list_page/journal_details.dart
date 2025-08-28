@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kunci_hidup/models/journal_model.dart';
-import 'package:kunci_hidup/views/base/continue_button.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/custom_svg.dart';
 import '../../../base/custom_scaffold.dart';
@@ -128,7 +126,6 @@ class _JournalDetailsState extends State<JournalDetails> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
@@ -139,8 +136,18 @@ class _JournalDetailsState extends State<JournalDetails> {
   // simple month helper
   String _monthName(int month) {
     const months = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
     return months[month - 1];
   }

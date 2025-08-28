@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../utils/app_colors.dart';
 import '../../base/bottom_circular_button.dart';
 import 'about_kh.dart';
 
@@ -55,10 +54,13 @@ class WelcomePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 25),
-        child: BottomCircularButton(onPress: () {
-          Get.to(()=> AboutKH());
-        }, currentStep: 1,),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+        child: BottomCircularButton(
+          onPress: () {
+            Get.to(() => AboutKH());
+          },
+          currentStep: 1,
+        ),
       ),
     );
   }

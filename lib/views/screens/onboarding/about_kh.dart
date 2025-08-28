@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
 import '../../base/bottom_circular_button.dart';
-import '../../base/ios_dialog.dart';
 import '../../base/option_button.dart';
 import 'help_us_hand.dart';
 
@@ -56,15 +55,15 @@ class _AboutKHState extends State<AboutKH> {
           },
           currentStep: 2,
         ),
-
       ],
       children: [
         Column(
           children: [
             const SizedBox(height: 32),
             Align(
-                alignment: Alignment.topLeft,
-                child: Image.asset("assets/images/logo.png", width: 112)),
+              alignment: Alignment.topLeft,
+              child: Image.asset("assets/images/logo.png", width: 112),
+            ),
             const SizedBox(height: 35),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),

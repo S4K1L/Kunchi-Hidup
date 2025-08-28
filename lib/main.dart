@@ -12,9 +12,6 @@ import 'controllers/theme_controller.dart';
 import 'helpers/di.dart' as di;
 import 'helpers/route.dart';
 
-late final AudioHandler audioHandler;
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -28,21 +25,20 @@ void main() async {
   print('App started');
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.languages});
   final Map<String, Map<String, String>> languages;
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (_, child) {
-        return GetBuilder<ThemeController>(
-          builder: (themeController) {
-            return GetBuilder<LocalizationController>(
-              builder: (localizeController) {
+    return GetBuilder<ThemeController>(
+      builder: (themeController) {
+        return GetBuilder<LocalizationController>(
+          builder: (localizeController) {
+            return ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              splitScreenMode: true,
+              builder: (_, child) {
                 return GetMaterialApp(
                   title: AppConstants.APP_NAME,
                   debugShowCheckedModeBanner: false,

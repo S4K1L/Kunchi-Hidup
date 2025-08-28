@@ -6,7 +6,6 @@ import '../../../../controllers/question_result_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/custom_svg.dart';
 import '../../../base/custom_scaffold.dart';
-import 'package:kunci_hidup/models/question_model.dart';
 
 class VoiceSanctuary extends StatelessWidget {
   const VoiceSanctuary({super.key});
@@ -38,10 +37,7 @@ class VoiceSanctuary extends StatelessWidget {
           color: AppColors.white.withOpacity(.10),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 10,
-            vertical: 12,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -58,8 +54,13 @@ class VoiceSanctuary extends StatelessWidget {
               SizedBox(width: 10.w),
               Expanded(
                 child: GestureDetector(
-                  onTap: (){
-                    Get.to(()=> MusicPlayer(audioLink: "assets/audio/simple.mp3", title: "Grief Ritual - Breathe Into Loss"));
+                  onTap: () {
+                    Get.to(
+                      () => MusicPlayer(
+                        audioLink: "assets/audio/simple.mp3",
+                        title: "Grief Ritual - Breathe Into Loss",
+                      ),
+                    );
                   },
                   child: Text(
                     "Dengarkan Pesan Penyembuhan dfgsdahkjfgdsahkha",
@@ -75,7 +76,6 @@ class VoiceSanctuary extends StatelessWidget {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

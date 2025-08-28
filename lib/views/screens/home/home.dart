@@ -18,7 +18,7 @@ import 'monthly_reflection.dart';
 import 'music_player.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   final bool isExpire = false;
 
@@ -79,186 +79,8 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20.h),
-              Row(
-                children: [
-                  Builder(
-                    builder: (context) => GestureDetector(
-                      onTap: () {
-                        showMenu(
-                          context: context,
-                          position: RelativeRect.fromLTRB(10, 80, 10, 0),
-                          // position of menu
-                          items: [
-                            PopupMenuItem(
-                              child: Text(
-                                "Privacy Policy",
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: 'DMSans',
-                                  color: AppColors.primaryColor,
-                                ),
-                              ),
-                              onTap: () {
-                                Get.to(()=> PrivacyPolicyPage());
-                              },
-                            ),
-                            PopupMenuItem(
-                              child: Text("General Terms",style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'DMSans',
-                                color: AppColors.primaryColor,
-                              ),),
-                              onTap: () {
-                                Get.to(()=> SubscriptionsPage());
-
-                              },
-                            ),
-                            PopupMenuItem(
-                              child: Text("Monthly Spiral Reflection",style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: 'DMSans',
-                                color: AppColors.primaryColor,
-                              ),),
-                              onTap: () {
-                                Get.to(()=> MonthlyReflection());
-                              },
-                            ),
-                            PopupMenuItem(child: Text("Log Out",style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w700,
-                              fontFamily: 'DMSans',
-                              color: AppColors.primaryColor,
-                            ),), onTap: () {
-                              Get.offAll(()=> SignInOption());
-                            }),
-                          ],
-                          color: AppColors.black,
-                          // background
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: BorderSide(color: AppColors.primaryColor),
-                          ),
-                        );
-                      },
-                      child: CustomSvg(asset: "assets/icons/drawer.svg"),
-                    ),
-                  ),
-                  Spacer(),
-                  Image.asset(
-                    "assets/images/logo.png",
-                    height: 43.h,
-                    width: 91.w,
-                  ),
-                  Spacer(),
-                ],
-              ),
-              if (isExpire)
-                Padding(
-                  padding: EdgeInsets.only(top: 12),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.r),
-                      color: AppColors.white.withOpacity(.10),
-                      border: Border.all(
-                        color: AppColors.primaryColor.withOpacity(.36),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 5.sp,
-                        vertical: 8.sp,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 37,
-                                height: 37,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(26.r),
-                                  color: AppColors.black.withOpacity(.48),
-                                  border: Border.all(
-                                    color: AppColors.primaryColor.withOpacity(
-                                      .42,
-                                    ),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Image.asset(
-                                    "assets/images/logo.png",
-                                    width: 28.w,
-                                    height: 13.h,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 6.w),
-                              Text(
-                                "Unlock Kunci Hidup Premium",
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: 'DMSans',
-                                  color: AppColors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 40.sp),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Premium access to your soul’s soundtrack.\nAll spirals, all audio guidance",
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: 'DMSans',
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                SizedBox(height: 16.h),
-
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(32.r),
-                                    color: AppColors.white.withOpacity(.10),
-                                    border: Border.all(
-                                      color: AppColors.primaryColor.withOpacity(
-                                        .40,
-                                      ),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 18.5,
-                                      vertical: 8,
-                                    ),
-                                    child: Text(
-                                      "Go Premium",
-                                      style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'DMSans',
-                                        color: AppColors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 7),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+              appBar(),
+              if (isExpire) expireNotice(),
               SizedBox(height: 20.h),
               Text(
                 "Kunci Soundscapes",
@@ -273,7 +95,7 @@ class HomePage extends StatelessWidget {
 
               /// Horizontal scrollable category buttons
               SizedBox(
-                height: MediaQuery.of(context).size.height / 10,
+                height: MediaQuery.of(context).size.height / 8,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.only(left: 16.h),
@@ -297,7 +119,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 35.h),
+              SizedBox(height: 20.h),
 
               ListView.builder(
                 shrinkWrap: true,
@@ -399,6 +221,189 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
+      ],
+    );
+  }
+
+  Padding expireNotice() {
+    return Padding(
+      padding: EdgeInsets.only(top: 12),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.r),
+          color: AppColors.white.withOpacity(.10),
+          border: Border.all(color: AppColors.primaryColor.withOpacity(.36)),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 8.sp),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 37,
+                    height: 37,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26.r),
+                      color: AppColors.black.withOpacity(.48),
+                      border: Border.all(
+                        color: AppColors.primaryColor.withOpacity(.42),
+                      ),
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        "assets/images/logo.png",
+                        width: 28.w,
+                        height: 13.h,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 6.w),
+                  Text(
+                    "Unlock Kunci Hidup Premium",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'DMSans',
+                      color: AppColors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 40.sp),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Premium access to your soul’s soundtrack.\nAll spirals, all audio guidance",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'DMSans',
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(height: 16.h),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32.r),
+                        color: AppColors.white.withOpacity(.10),
+                        border: Border.all(
+                          color: AppColors.primaryColor.withOpacity(.40),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 18.5,
+                          vertical: 8,
+                        ),
+                        child: Text(
+                          "Go Premium",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'DMSans',
+                            color: AppColors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 7),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Row appBar() {
+    return Row(
+      children: [
+        Builder(
+          builder: (context) => GestureDetector(
+            onTap: () {
+              showMenu(
+                context: context,
+                position: RelativeRect.fromLTRB(10, 80, 10, 0),
+                // position of menu
+                items: [
+                  PopupMenuItem(
+                    child: Text(
+                      "Privacy Policy",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'DMSans',
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                    onTap: () {
+                      Get.to(() => PrivacyPolicyPage());
+                    },
+                  ),
+                  PopupMenuItem(
+                    child: Text(
+                      "General Terms",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'DMSans',
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                    onTap: () {
+                      Get.to(() => SubscriptionsPage());
+                    },
+                  ),
+                  PopupMenuItem(
+                    child: Text(
+                      "Monthly Spiral Reflection",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'DMSans',
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                    onTap: () {
+                      Get.to(() => MonthlyReflection());
+                    },
+                  ),
+                  PopupMenuItem(
+                    child: Text(
+                      "Log Out",
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'DMSans',
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
+                    onTap: () {
+                      Get.offAll(() => SignInOption());
+                    },
+                  ),
+                ],
+                color: AppColors.black,
+                // background
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(color: AppColors.primaryColor),
+                ),
+              );
+            },
+            child: CustomSvg(asset: "assets/icons/drawer.svg"),
+          ),
+        ),
+        Spacer(),
+        Image.asset("assets/images/logo.png", height: 43.h, width: 91.w),
+        Spacer(),
       ],
     );
   }

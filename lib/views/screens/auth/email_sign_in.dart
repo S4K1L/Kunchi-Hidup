@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,10 +24,7 @@ class EmailSignIn extends StatelessWidget {
           height: 250.h,
         ),
         SizedBox(height: 20.h),
-        Image.asset(
-          "assets/images/logo.png",
-          height: 57.h,
-        ),
+        Image.asset("assets/images/logo.png", height: 57.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
           child: Column(
@@ -72,29 +68,31 @@ class EmailSignIn extends StatelessWidget {
               SizedBox(height: 10.h),
 
               // Email TextField with controller
-              Obx(() => TextFormField(
-                controller: controller.emailController,
-                keyboardType: TextInputType.emailAddress,
-                style: TextStyle(color: Colors.white, fontSize: 14.sp),
-                decoration: InputDecoration(
-                  fillColor: Colors.white.withOpacity(.10),
-                  filled: true,
-                  hintText: "Email",
-                  hintStyle: TextStyle(
-                    color: Colors.white.withOpacity(.30),
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: "DMSans",
+              Obx(
+                () => TextFormField(
+                  controller: controller.emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                  decoration: InputDecoration(
+                    fillColor: Colors.white.withOpacity(.10),
+                    filled: true,
+                    hintText: "Email",
+                    hintStyle: TextStyle(
+                      color: Colors.white.withOpacity(.30),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "DMSans",
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12.r),
+                      borderSide: BorderSide.none,
+                    ),
+                    errorText: controller.emailError.value.isEmpty
+                        ? null
+                        : controller.emailError.value,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12.r),
-                    borderSide: BorderSide.none,
-                  ),
-                  errorText: controller.emailError.value.isEmpty
-                      ? null
-                      : controller.emailError.value,
                 ),
-              )),
+              ),
               SizedBox(height: 26.h),
 
               // Continue Button with validation

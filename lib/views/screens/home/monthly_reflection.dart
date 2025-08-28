@@ -260,11 +260,8 @@ class MonthlyReflection extends StatelessWidget {
               ),
 
               SizedBox(height: 20.h),
-              
-              CustomContinueButton(title: "Download My Reflection", onPress: (){})
-
-
-
+              CustomContinueButton(title: "Download My Reflection", onPress: (){}),
+              SizedBox(height: 20.h),
             ],
           ),
         ),

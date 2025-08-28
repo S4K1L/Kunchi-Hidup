@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -21,12 +20,9 @@ class OtherSignInOption extends StatelessWidget {
         Image.asset(
           "assets/images/loginYoga.png",
           fit: BoxFit.cover,
-          height: MediaQuery.of(context).size.height/2.8,
+          height: MediaQuery.of(context).size.height / 2.8,
         ),
-        Image.asset(
-          "assets/images/logo.png",
-          height: 57.h,
-        ),
+        Image.asset("assets/images/logo.png", height: 57.h),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.sp),
           child: Column(
@@ -67,26 +63,30 @@ class OtherSignInOption extends StatelessWidget {
               ),
               SizedBox(height: 25.h),
               CustomAuthButton(
-                onPress: (){},
+                onPress: () {},
                 logo: 'assets/icons/apple.svg',
                 title: 'Sign in with Apple',
               ),
               SizedBox(height: 10.h),
               CustomAuthButton(
-                  onPress: (){},
-                  logo: 'assets/icons/facebook.svg', title: 'Sign in with Facebook'),
+                onPress: () {},
+                logo: 'assets/icons/facebook.svg',
+                title: 'Sign in with Facebook',
+              ),
               SizedBox(height: 10.h),
               CustomAuthButton(
-                  onPress: (){
-                    Get.to(()=> EmailSignIn());
-                  },
-                  logo: 'assets/icons/sms.svg', title: 'Sign in with Email'),
+                onPress: () {
+                  Get.to(() => EmailSignIn());
+                },
+                logo: 'assets/icons/sms.svg',
+                title: 'Sign in with Email',
+              ),
               SizedBox(height: 12.h),
               AgreeTermsWidget(),
               SizedBox(height: 12.h),
             ],
           ),
-        )
+        ),
       ],
     );
   }

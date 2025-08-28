@@ -19,8 +19,10 @@ class _OtpPageState extends State<OtpPage> {
   int _start = 30;
   late Timer _timer;
 
-  final List<TextEditingController> _otpControllers =
-  List.generate(6, (_) => TextEditingController());
+  final List<TextEditingController> _otpControllers = List.generate(
+    6,
+    (_) => TextEditingController(),
+  );
   final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
 
   void startTimer() {
@@ -51,7 +53,9 @@ class _OtpPageState extends State<OtpPage> {
   @override
   void dispose() {
     _timer.cancel();
-    _focusNodes.forEach((f) => f.dispose());
+    for (var f in _focusNodes) {
+      f.dispose();
+    }
     super.dispose();
   }
 
@@ -74,10 +78,7 @@ class _OtpPageState extends State<OtpPage> {
           height: 230.h,
         ),
         SizedBox(height: 12.h),
-        Image.asset(
-          "assets/images/logo.png",
-          height: 57.h,
-        ),
+        Image.asset("assets/images/logo.png", height: 57.h),
         SizedBox(height: 12.h),
         CustomSvg(asset: 'assets/icons/colorSms.svg', width: 64.w),
         SizedBox(height: 12.h),
@@ -178,7 +179,11 @@ class _OtpPageState extends State<OtpPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.refresh, color: AppColors.primaryColor, size: 20.r),
+                        Icon(
+                          Icons.refresh,
+                          color: AppColors.primaryColor,
+                          size: 20.r,
+                        ),
                         Text(
                           ' Resend Email',
                           style: TextStyle(

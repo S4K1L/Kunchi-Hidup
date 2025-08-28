@@ -179,6 +179,7 @@ class SubscriptionsPage extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: 40),
       ],
     );
   }

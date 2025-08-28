@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kunci_hidup/views/base/continue_button.dart';
@@ -19,7 +18,7 @@ class ConfirmPage extends StatelessWidget {
         Image.asset(
           "assets/images/loginYoga.png",
           fit: BoxFit.cover,
-          height: MediaQuery.of(context).size.height/2.5,
+          height: MediaQuery.of(context).size.height / 2.5,
         ),
         Spacer(),
         Padding(
@@ -27,10 +26,7 @@ class ConfirmPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                "assets/images/logo.png",
-                height: 57,
-              ),
+              Image.asset("assets/images/logo.png", height: 57),
               SizedBox(height: 52),
               Text(
                 "Hello, Jhon",
@@ -56,9 +52,12 @@ class ConfirmPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 52),
-              CustomContinueButton(title: "Continue", onPress: (){
-                Get.to(()=> WelcomePage());
-              })
+              CustomContinueButton(
+                title: "Continue",
+                onPress: () {
+                  Get.to(() => WelcomePage());
+                },
+              ),
             ],
           ),
         ),
