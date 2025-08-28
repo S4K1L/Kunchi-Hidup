@@ -156,5 +156,3 @@ This project is licensed under the [MIT License](LICENSE).
 > **Crafted with 🌸 mindfulness using Flutter, Django, and GetX.**
 
 ---
-
-Would you like me to also draft the **README section for the Django backend** (API endpoints, setup, etc.) so both repos stay in sync?
