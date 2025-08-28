@@ -66,8 +66,8 @@ Follow these steps to run the project locally:
 ### 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/kunci-hidup-chakra-quiz.git
-cd kunci-hidup-chakra-quiz
+git clone https://github.com/S4K1L/Kunchi-Hidup.git
+cd Kunchi-Hidup
 ```
 
 ### 2. **Install Flutter dependencies**
