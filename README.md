@@ -66,8 +66,8 @@ Follow these steps to run the project locally:
 ### 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/kunci-hidup-chakra-quiz.git
-cd kunci-hidup-chakra-quiz
+git clone https://github.com/S4K1L/Kunchi-Hidup.git
+cd Kunchi-Hidup
 ```
 
 ### 2. **Install Flutter dependencies**
@@ -156,5 +156,3 @@ This project is licensed under the [MIT License](LICENSE).
 > **Crafted with 🌸 mindfulness using Flutter, Django, and GetX.**
 
 ---
-
-Would you like me to also draft the **README section for the Django backend** (API endpoints, setup, etc.) so both repos stay in sync?
