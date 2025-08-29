@@ -2,13 +2,11 @@ name: Build and Release Android APK
 
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*'
 
 permissions:
-  contents: write
+  contents: write  # Required to create releases
 
 jobs:
   build_android:
@@ -27,15 +25,15 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: stable
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build APK
+      - name: Build release APK
         run: flutter build apk --release
 
-      - name: Create GitHub Release
+      - name: Upload APK to GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: build/app/outputs/flutter-apk/app-release.apk
