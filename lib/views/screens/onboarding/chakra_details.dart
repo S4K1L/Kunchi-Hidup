@@ -8,7 +8,7 @@ import 'package:kunci_hidup/views/screens/onboarding/voice_chakra.dart';
 import '../../../utils/app_colors.dart';
 
 class ChakraDetails extends StatelessWidget {
-   ChakraDetails({super.key});
+   const ChakraDetails({super.key});
 
   @override
   Widget build(BuildContext context) {

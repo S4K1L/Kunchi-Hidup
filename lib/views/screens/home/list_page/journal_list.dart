@@ -123,7 +123,7 @@ class JournalList extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             GestureDetector(
               onTap: () => Get.back(),

@@ -1,4 +1,3 @@
-import 'package:audio_service/audio_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kunci_hidup/themes/dark_theme.dart';
 import 'package:kunci_hidup/utils/app_constants.dart';
@@ -14,15 +13,16 @@ import 'helpers/route.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  PaintingBinding.instance.imageCache.maximumSize = 200;
 
-  print('Starting dependency injection');
+  debugPrint('Starting dependency injection');
   Map<String, Map<String, String>> languages = await di.init();
-  print('Dependency injection complete');
+  debugPrint('Dependency injection complete');
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(MyApp(languages: languages));
-  print('App started');
+  debugPrint('App started');
 }
 
 class MyApp extends StatelessWidget {

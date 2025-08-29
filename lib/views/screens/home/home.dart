@@ -20,11 +20,10 @@ import 'music_player.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  final bool isExpire = false;
+  final bool isExpire = true;
 
   @override
   Widget build(BuildContext context) {
-    // Two lists: one for icons, one for titles
     final List<String> assets = [
       'anxious',
       'overwhelmed',
@@ -178,46 +177,46 @@ class HomePage extends StatelessWidget {
                 },
               ),
               SizedBox(height: 20.h),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  width: 128.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32.r),
-                    color: AppColors.white.withOpacity(.08),
-                    border: Border.all(
-                      color: AppColors.primaryColor.withOpacity(.19),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 4.w),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Overwhelmed",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'DMSans',
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                        SizedBox(width: 4.w),
-                        CircleAvatar(
-                          radius: 10.r,
-                          backgroundColor: AppColors.black,
-                          child: CustomSvg(
-                            asset: "assets/icons/categorySelected.svg",
-                            width: 10.w,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.center,
+              //   child: Container(
+              //     width: 128.w,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(32.r),
+              //       color: AppColors.white.withOpacity(.08),
+              //       border: Border.all(
+              //         color: AppColors.primaryColor.withOpacity(.19),
+              //       ),
+              //     ),
+              //     child: Padding(
+              //       padding: EdgeInsets.symmetric(vertical: 4.w),
+              //       child: Row(
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Text(
+              //             "Overwhelmed",
+              //             style: TextStyle(
+              //               fontSize: 14.sp,
+              //               fontWeight: FontWeight.w400,
+              //               fontFamily: 'DMSans',
+              //               color: AppColors.primaryColor,
+              //             ),
+              //           ),
+              //           SizedBox(width: 4.w),
+              //           CircleAvatar(
+              //             radius: 10.r,
+              //             backgroundColor: AppColors.black,
+              //             child: CustomSvg(
+              //               asset: "assets/icons/categorySelected.svg",
+              //               width: 10.w,
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -361,7 +360,7 @@ class HomePage extends StatelessWidget {
                       Get.to(() => SubscriptionsPage());
                     },
                   ),
-                  PopupMenuItem(
+                  if (isExpire == false)PopupMenuItem(
                     child: Text(
                       "Monthly Spiral Reflection",
                       style: TextStyle(

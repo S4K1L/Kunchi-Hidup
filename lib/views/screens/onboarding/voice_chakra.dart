@@ -93,7 +93,7 @@ class VoiceChakra extends StatelessWidget {
                               backgroundColor: AppColors.primaryColor.withOpacity(.21),
                               child: Icon(Icons.play_arrow_rounded,color: AppColors.primaryColor,size: 27.sp),
                             ),
-                             SizedBox(width: 11.w),
+                             SizedBox(width: 10.w),
                              Text(
                               "Dengarkan Pesan Penyembuhan",
                               style: TextStyle(
@@ -101,6 +101,8 @@ class VoiceChakra extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 fontFamily: 'DMSans',
                                 color: Colors.white,
+                                letterSpacing: -0.3,
+                                overflow: TextOverflow.ellipsis
                               ),
                               textAlign: TextAlign.center,
                             ),

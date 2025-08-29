@@ -9,7 +9,7 @@ import '../../base/custom_wave.dart';
 import '../subscriptions/subscriptions.dart';
 
 class PlayAudio extends StatefulWidget {
-   PlayAudio({super.key});
+   const PlayAudio({super.key});
 
   @override
   State<PlayAudio> createState() => _PlayAudioState();
@@ -17,8 +17,6 @@ class PlayAudio extends StatefulWidget {
 
 class _PlayAudioState extends State<PlayAudio> {
   final AudioPlayer _audioPlayer = AudioPlayer();
-  late Stream<Duration> _positionStream;
-  late Stream<Duration?> _durationStream;
 
   @override
   void initState() {
@@ -37,10 +35,8 @@ class _PlayAudioState extends State<PlayAudio> {
   Future<void> _initAudio() async {
     try {
       await _audioPlayer.setAsset('assets/audio/sample.mp3');
-      _positionStream = _audioPlayer.positionStream;
-      _durationStream = _audioPlayer.durationStream;
     } catch (e) {
-      print("Error loading audio: $e");
+      debugPrint("Error loading audio: $e");
     }
   }
   String _formatDuration(Duration duration) {
@@ -211,7 +207,7 @@ class _PlayAudioState extends State<PlayAudio> {
                                   backgroundColor: AppColors.primaryColor.withOpacity(.21),
                                   child: Padding(
                                     padding:  EdgeInsets.all(5.sp),
-                                    child: Icon(Icons.pause, color: AppColors.primaryColor,size: 30.sp,),
+                                    child: Icon(Icons.pause, color: AppColors.primaryColor,size: 25.sp,),
                                   )),
                               onPressed: _audioPlayer.pause,
                             );
@@ -220,8 +216,8 @@ class _PlayAudioState extends State<PlayAudio> {
                               icon: CircleAvatar(
                                   backgroundColor: AppColors.primaryColor.withOpacity(.21),
                                   child: Padding(
-                                    padding:  EdgeInsets.all(5),
-                                    child: Icon(Icons.play_arrow, color: AppColors.primaryColor,size: 30.sp,),
+                                    padding:  EdgeInsets.all(5.sp),
+                                    child: Icon(Icons.play_arrow, color: AppColors.primaryColor,size: 25.sp,),
                                   )),
                               onPressed: _audioPlayer.play,
                             );

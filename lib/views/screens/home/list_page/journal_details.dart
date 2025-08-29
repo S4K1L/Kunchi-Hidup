@@ -22,7 +22,7 @@ class _JournalDetailsState extends State<JournalDetails> {
   void initState() {
     super.initState();
     // Pre-fill with existing journal content
-    _controller = TextEditingController(text: widget.journal.description ?? "");
+    _controller = TextEditingController(text: widget.journal.description);
   }
 
   @override
@@ -43,8 +43,9 @@ class _JournalDetailsState extends State<JournalDetails> {
             children: [
               /// Top AppBar
               Container(
-                height: 110.h,
+                height: MediaQuery.of(context).size.height / 7,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: const Color(0xDFF3F3F3).withOpacity(.10),
                 ),
                 child: Padding(
@@ -60,7 +61,7 @@ class _JournalDetailsState extends State<JournalDetails> {
                       ),
                       Expanded(
                         child: Text(
-                          widget.journal.title ?? "Journal",
+                          widget.journal.title,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 20.sp,

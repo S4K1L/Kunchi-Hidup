@@ -19,9 +19,6 @@ class MusicPlayer extends StatefulWidget {
 class _MusicPlayerState extends State<MusicPlayer> {
   final MusicPlayerController controller = Get.put(MusicPlayerController());
 
-  late Stream<Duration> _positionStream;
-  late Stream<Duration?> _durationStream;
-
   @override
   void initState() {
     super.initState();
@@ -102,6 +99,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22.r),
+                      // ignore: deprecated_member_use
                       color: Colors.white.withOpacity(.10),
                       border: Border.all(color: AppColors.primaryColor.withOpacity(.40))
                   ),

@@ -99,7 +99,7 @@ class SignInOption extends StatelessWidget {
                   SizedBox(height: 12.h),
                   CustomAuthButton(
                     onPress: () {
-                      Get.to(() => HomePage());
+                      Get.offAll(() => HomePage());
                     },
                     logo: '',
                     title: 'Login as Guest ',

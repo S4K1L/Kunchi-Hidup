@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:kunci_hidup/views/base/continue_button.dart';
 import 'package:kunci_hidup/views/base/custom_scaffold.dart';
-import 'package:kunci_hidup/views/screens/onboarding/welcome.dart';
+import 'package:kunci_hidup/views/screens/onboarding/onboarding_welcome.dart';
 import '../../../utils/custom_svg.dart';
 import '../../base/agree_and_term_widgets.dart';
 
@@ -56,7 +56,7 @@ class ConfirmPage extends StatelessWidget {
               CustomContinueButton(
                 title: "Continue",
                 onPress: () {
-                  Get.to(() => WelcomePage());
+                  Get.to(() => OnboardingWelcomePage());
                 },
               ),
             ],

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../base/bottom_circular_button.dart';
 import 'about_kh.dart';
 
-class WelcomePage extends StatelessWidget {
-  const WelcomePage({super.key});
+class OnboardingWelcomePage extends StatelessWidget {
+  const OnboardingWelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,6 @@ class WelcomePage extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: 32.h),
               Image.asset("assets/images/logo.png", width: 112.w),
               Image.asset(
                 "assets/images/girlYoga.jpg",
@@ -22,7 +21,7 @@ class WelcomePage extends StatelessWidget {
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
-              SizedBox(height: 32.h),
+              SizedBox(height: 18.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.w),
                 child: Column(
@@ -31,7 +30,7 @@ class WelcomePage extends StatelessWidget {
                     Text(
                       "Welcome to the\nSanctuary of soul sounds.",
                       style: TextStyle(
-                        fontSize: 35.sp,
+                        fontSize: 34.sp,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'CormorantGaramond',
                         color: Colors.white,
