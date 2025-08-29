@@ -1,47 +1,38 @@
-# A basic Flutter CI/CD workflow to build a release APK
 name: Build and Release Android APK
 
-# Trigger the workflow on pushes to the main branch
 on:
   push:
     branches:
       - main
 
-# A single job to build and upload the Android APK
 jobs:
   build_android:
-    name: Build Android APK
-    runs-on: ubuntu-latest # Use an Ubuntu runner for this job
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repository code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up the Java environment, required for Android builds
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      # Step 3: Set up the Flutter environment
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
 
-      # Step 4: Install Flutter project dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # Step 5: Build the release APK for Android
       - name: Build APK
         run: flutter build apk --release
 
-      # Step 6: Upload the generated APK as a workflow artifact
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: app-release
-          path: build/app/outputs/flutter-apk/app-release.apk
+          files: build/app/outputs/flutter-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
