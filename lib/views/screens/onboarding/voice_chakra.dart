@@ -91,7 +91,7 @@ class VoiceChakra extends StatelessWidget {
                             CircleAvatar(
                               radius: 22.r,
                               backgroundColor: AppColors.primaryColor.withOpacity(.21),
-                              child: Icon(Icons.play_arrow_rounded,color: AppColors.primaryColor,size: 27.sp),
+                              child: Center(child: Icon(Icons.play_arrow_rounded,color: AppColors.primaryColor,size: 27.sp)),
                             ),
                              SizedBox(width: 10.w),
                              Text(

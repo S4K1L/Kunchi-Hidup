@@ -85,14 +85,14 @@ class VoiceSanctuary extends StatelessWidget {
 
   Container customAppBar(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 7,
+      height: MediaQuery.of(context).size.height / 6,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(22.r),
         color: const Color(0xDFF3F3F3).withOpacity(.10),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.w),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 40.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,

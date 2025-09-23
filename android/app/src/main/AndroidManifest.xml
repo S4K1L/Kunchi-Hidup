@@ -19,7 +19,7 @@
 
     
     <application
-        android:label="kunci_hidup"
+        android:label="Chakra Quiz"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

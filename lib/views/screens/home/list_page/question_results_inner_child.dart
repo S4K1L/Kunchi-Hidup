@@ -8,13 +8,11 @@ import '../../../base/custom_scaffold.dart';
 import 'package:kunci_hidup/models/question_model.dart';
 
 class QuestionResultsInnerChild extends StatelessWidget {
-  const QuestionResultsInnerChild({super.key});
+  QuestionResultsInnerChild({super.key});
+  final QuestionResultsController controller = Get.put(QuestionResultsController());
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(QuestionResultsController());
-    controller.fetchResults();
-
     return CustomScaffold(
       useSafeArea: false,
       children: [
@@ -96,38 +94,38 @@ class QuestionResultsInnerChild extends StatelessWidget {
               );
   }
 
-  Container customAppBar(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height / 7,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(22.r),
-        color: const Color(0xDFF3F3F3).withOpacity(.10),
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 30.w),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: CustomSvg(asset: "assets/icons/back.svg"),
-            ),
-            Text(
-              "Inner Child Spiral\n Completed",
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'DMSans',
-                color: AppColors.primaryColor,
+  GestureDetector customAppBar(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.back();
+      },
+      child: Container(
+        height: MediaQuery.of(context).size.height / 6,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(22.r),
+          color: const Color(0xDFF3F3F3).withOpacity(.10),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 40.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomSvg(asset: "assets/icons/back.svg"),
+              Text(
+                "Inner Child Spiral\n Completed",
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'DMSans',
+                  color: AppColors.primaryColor,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(),
-          ],
+              SizedBox(),
+            ],
+          ),
         ),
       ),
     );

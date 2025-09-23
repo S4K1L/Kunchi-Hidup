@@ -80,26 +80,26 @@ class MonthlyMirror extends StatelessWidget {
               customButton("child", "12 Days of Journaling", () {
                 Get.to(()=> JournalList());
               }),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 26.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    buildFeeling('Loneliness'),
-                    buildFeeling('Abandonment'),
-                    buildFeeling('Abandonment'),
-                  ],
-                ),
-              ),
-              Text(
-                "You stayed with yourself in sadness",
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'DMSans',
-                  color: AppColors.white,
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(vertical: 26.w),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       buildFeeling('Loneliness'),
+              //       buildFeeling('Abandonment'),
+              //       buildFeeling('Abandonment'),
+              //     ],
+              //   ),
+              // ),
+              // Text(
+              //   "You stayed with yourself in sadness",
+              //   style: TextStyle(
+              //     fontSize: 18.sp,
+              //     fontWeight: FontWeight.w500,
+              //     fontFamily: 'DMSans',
+              //     color: AppColors.white,
+              //   ),
+              // ),
             ],
           ),
         ),

@@ -8,6 +8,7 @@ import '../../../../controllers/task_controller.dart';
 import '../../../base/chakra_chart.dart';
 import '../../../base/custom_scaffold.dart';
 import '../../../base/task_card.dart';
+import '../../../base/task_list.dart';
 
 class MonthlyReflection extends StatelessWidget {
   const MonthlyReflection({super.key});
@@ -68,39 +69,11 @@ class MonthlyReflection extends StatelessWidget {
               SizedBox(height: 14.h),
 
               // Tasks List
-              Obx(() {
-                if (taskController.isLoading.value) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                if (taskController.tasks.isEmpty) {
-                  return const Center(
-                    child: Text(
-                      "No tasks found",
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                  );
-                }
-
-                return SizedBox(
-                  height: 110.h,
-                  child: ListView.separated(
-                    padding: EdgeInsets.only(right: 12.w),
-                    // right-side spacing
-                    scrollDirection: Axis.horizontal,
-                    itemCount: taskController.tasks.length,
-                    separatorBuilder: (_, __) => SizedBox(width: 12.w),
-                    // space between cards
-                    itemBuilder: (context, index) {
-                      final task = taskController.tasks[index];
-                      return TaskCard(task: task);
-                    },
-                  ),
-                );
-              }),
+              TaskList(taskController: taskController),
 
               SizedBox(height: 20.h),
 
-// Healing Toolkit section
+              // Healing Toolkit section
               Text(
                 "Your Healing Toolkit",
                 style: TextStyle(
@@ -112,19 +85,22 @@ class MonthlyReflection extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
 
-// Toolkit icons row
+              // Toolkit icons row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _toolkitItem("assets/icons/balance.svg", "Somatic\nBalance"),
-                  _toolkitItem("assets/icons/acceptance.svg", "Self\nAcceptance"),
+                  _toolkitItem(
+                    "assets/icons/acceptance.svg",
+                    "Self\nAcceptance",
+                  ),
                   _toolkitItem("assets/icons/child.svg", "Inner\nChild"),
                 ],
               ),
 
               SizedBox(height: 20.h),
 
-// Journal Entries card
+              // Journal Entries card
               Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
@@ -139,7 +115,11 @@ class MonthlyReflection extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            CustomSvg(asset: "assets/icons/journal.svg", height: 22, width: 22),
+                            CustomSvg(
+                              asset: "assets/icons/journal.svg",
+                              height: 22,
+                              width: 22,
+                            ),
                             SizedBox(width: 8.w),
                             Text(
                               "Journal Entries",
@@ -188,7 +168,7 @@ class MonthlyReflection extends StatelessWidget {
 
               SizedBox(height: 20.h),
 
-// Quote card
+              // Quote card
               Container(
                 padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 16.w),
                 decoration: BoxDecoration(
@@ -197,7 +177,11 @@ class MonthlyReflection extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Icon(Icons.format_quote, size: 40, color: AppColors.primaryColor),
+                    Icon(
+                      Icons.format_quote,
+                      size: 40,
+                      color: AppColors.primaryColor,
+                    ),
                     SizedBox(height: 8.h),
                     Text(
                       "Whispers from within",
@@ -232,7 +216,11 @@ class MonthlyReflection extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Icon(Icons.emoji_events, color: AppColors.primaryColor, size: 36),
+                    Icon(
+                      Icons.emoji_events,
+                      color: AppColors.primaryColor,
+                      size: 36,
+                    ),
                     SizedBox(height: 10.h),
                     Text(
                       "You completed 2 Spiral Journeys this month!",
@@ -260,7 +248,10 @@ class MonthlyReflection extends StatelessWidget {
               ),
 
               SizedBox(height: 20.h),
-              CustomContinueButton(title: "Download My Reflection", onPress: (){}),
+              CustomContinueButton(
+                title: "Download My Reflection",
+                onPress: () {},
+              ),
               SizedBox(height: 20.h),
             ],
           ),
@@ -354,7 +345,12 @@ class MonthlyReflection extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomSvg(asset: icon, height: 30.h, width: 30.w, color: AppColors.primaryColor),
+          CustomSvg(
+            asset: icon,
+            height: 30.h,
+            width: 30.w,
+            color: AppColors.primaryColor,
+          ),
           SizedBox(height: 8.h),
           Text(
             label,
@@ -370,7 +366,4 @@ class MonthlyReflection extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

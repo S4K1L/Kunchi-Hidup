@@ -5,6 +5,12 @@ import '../models/question_model.dart';
 class QuestionResultsController extends GetxController {
   var results = <QuestionResultModel>[].obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    fetchResults();
+  }
+
   Future<void> fetchResults() async {
     await Future.delayed(const Duration(seconds: 1));
     results.value = [
